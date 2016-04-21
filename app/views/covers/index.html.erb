@@ -1,49 +1,35 @@
-style
-
-<h1> Markup examples </h1>
-<div class="container" style="width:70%">
-  <p> This example shows you how a basic Slim file looks like.</p>
 
 
+
+
+<div class="container" style="width:60%">
 
 <div class="row">
-  <div class="col-xs-4">
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-
-      <iframe width="200" height="150" src="https://www.youtube.com/embed/nsSCl8UXlrY" frameborder="0" allowfullscreen></iframe>
+  <%= form_tag covers_path, method: :get, class: "" do %>
+    <div class="col-xs-10">
+          <%= text_field_tag( :search, params[:search], placeholder: "Search", class: "form-control") %>
     </div>
-    <div class="panel-footer">
-      <h4> Work Work Work - Rihanna</h4>
-      <h5> Connor Maynard</h5>
+    <div class="col-xs-2">
+          <%= submit_tag :search, class: 'btn btn-primary'%>
     </div>
-  </div>
+  <% end %>
 </div>
-<div class="col-xs-4">
 
-  <div class="panel panel-default">
-    <div class="panel-body">
 
-        <iframe width="200" height="150" src="https://www.youtube.com/embed/nsSCl8UXlrY" frameborder="0" allowfullscreen></iframe>
+<div class="row" style="margin-top:5%;">
+  <% @covers.each  do |cover| %>
+    <div class="col-md-4 col-xs-12 col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="http://img.youtube.com/vi/<%= cover.youtube_id %>/0.jpg" frameborder="0" style="max-width:100%"></img>
+        </div>
+        <div class="panel-footer">
+          <%= link_to cover do %>
+            <h5><%= cover.title %> - <%= cover.original_artist %></h4>
+            <h6> <%= cover.cover_artist %></h6>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="panel-footer">
-         <h4> Work Work Work - Rihanna</h4>
-         <h5> Connor Maynard</h5>
-    </div>
-  </div>
-</div>
-  <div class="col-xs-4">
-
-  <div class="panel panel-default">
-    <div class="panel-body">
-
-      <iframe width="200" height="150" src="https://www.youtube.com/embed/nsSCl8UXlrY" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="panel-footer">
-      <h4> Work Work Work - Rihanna</h4>
-      <h5> Connor Maynard</h5>
-    </div>
-  </div>
-</div>
+  <% end %>
 </div>
